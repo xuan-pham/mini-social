@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Post } from './post.entity';
@@ -17,12 +17,22 @@ export class PostsService {
     }
 
     async getPostById(id: number) {
-        const posts = await this.postRepository.findOne({ where: { id } })
-        return posts;
+        try {
+            const posts = await this.postRepository.findOne({
+                relations: {
+                    author: true
+                },
+                where: { id }
+            });
+            if (!posts) throw new HttpException('Post not exist', HttpStatus.NOT_FOUND);
+            return posts;
+        } catch (error) {
+            return error.message
+        }
+
     }
 
     async createPost(id, post: CreatePostDto, images: any) {
-        console.log(images);
         try {
             const nameFiles = images.map(({ filename }) => {
                 return filename;
@@ -66,4 +76,5 @@ export class PostsService {
         }
 
     }
+
 }

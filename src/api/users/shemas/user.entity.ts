@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Comment } from '../../comments/shemas/comment.entity';
 import { Post } from '../../posts/post.entity';
 
 @Entity()
@@ -32,4 +33,5 @@ export class User {
 
     @Column({ default: false })
     public isRegisteredWithGoogle: boolean;
+
 }

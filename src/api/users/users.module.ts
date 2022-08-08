@@ -9,10 +9,11 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from 'src/share/auth/strategys/local.strategy';
 import { AuthService } from 'src/share/auth/auth.service';
-
+import { Post } from '../posts/post.entity';
+import { Comment } from '../comments/shemas/comment.entity';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([Comment, User, Post]),
     ConfigModule,
     JwtModule.register({}),
   ],

@@ -13,6 +13,7 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.register({})
   ],
   providers: [PostsService],
-  controllers: [PostsController]
+  controllers: [PostsController],
+  exports: [PostsService]
 })
 export class PostsModule { }

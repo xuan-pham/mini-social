@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, RelationId } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, ManyToOne, OneToMany, PrimaryGeneratedColumn, RelationId } from "typeorm";
+import { Comment } from "../comments/shemas/comment.entity";
 import { User } from "../users/shemas/user.entity";
 
 @Entity()
@@ -21,4 +22,7 @@ export class Post {
 
     @RelationId((post: Post) => post.author)
     public authorId: number;
+
+    @OneToMany(type => Comment, comment => comment.post)
+    comments: Comment[];
 }
