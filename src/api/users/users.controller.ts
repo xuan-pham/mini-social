@@ -4,7 +4,6 @@ import JwtAuthenticationGuard from '../../share/auth/guards/jwt.guard';
 import { updateUserInterface } from './interface/updateUser.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { storage } from '../../config/image/imageProfile.config';
-import { join } from 'path';
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService: UsersService) { }
@@ -27,5 +26,13 @@ export class UsersController {
     Delete(@Req() request) {
         const id = request.user.id
         return this.userService.deleteUser(+id);
+    }
+
+    //get info user and post by user
+    @UseGuards(JwtAuthenticationGuard)
+    @Get()
+    getAll(@Req() request) {
+        const id = request.user.id;
+        return this.userService.getAllInfo(+id);
     }
 }

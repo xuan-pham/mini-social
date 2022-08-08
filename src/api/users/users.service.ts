@@ -86,4 +86,18 @@ export class UsersService {
         }
     }
 
+    async getAllInfo(id) {
+        try {
+            const info = await this.userRepository.find({
+                relations: {
+                    posts: true
+                }, where: { id }
+            });
+            return info
+        } catch (error) {
+            return error.message;
+        }
+
+    }
+
 }
