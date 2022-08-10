@@ -11,6 +11,7 @@ import { LocalStrategy } from 'src/share/auth/strategys/local.strategy';
 import { AuthService } from 'src/share/auth/auth.service';
 import { Post } from '../posts/post.entity';
 import { Comment } from '../comments/shemas/comment.entity';
+
 @Module({
   imports: [
     TypeOrmModule.forFeature([Comment, User, Post]),
@@ -21,4 +22,4 @@ import { Comment } from '../comments/shemas/comment.entity';
   providers: [UsersService, JwtStrategy, LocalStrategy, AuthService],
   exports: [UsersService],
 })
-export class UsersModule { }
+export class UsersModule {}
