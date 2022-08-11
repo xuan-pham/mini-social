@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from 'src/api/users/shemas/user.entity';
 import { Post } from '../../api/posts/post.entity';
+import { Comment } from '../../api/comments/shemas/comment.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { Post } from '../../api/posts/post.entity';
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         entities: [
-          User, Post
+          User, Post, Comment
         ],
         synchronize: true,
       })
