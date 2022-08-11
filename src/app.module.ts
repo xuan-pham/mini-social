@@ -7,28 +7,39 @@ import { AuthModule } from './share/auth/auth.module';
 import { MailModule } from './share/mail/mail.module';
 import { GoogleAuthModule } from './share/google-auth/google-auth.module';
 import { CommentsModule } from './api/comments/comments.module';
-import { ChatboxModule } from './api/chatbox/chatbox.module';
+
 import { SearchModule } from './api/search/search.module';
 
 import * as Joi from '@hapi/joi';
 @Module({
-  imports: [ConfigModule.forRoot({
-    validationSchema: Joi.object({
-      POSTGRES_HOST: Joi.string().required(),
-      POSTGRES_PORT: Joi.number().required(),
-      POSTGRES_USER: Joi.string().required(),
-      POSTGRES_PASSWORD: Joi.string().required(),
-      POSTGRES_DB: Joi.string().required(),
-      PORT: Joi.number(),
-      JWT_SECRET: Joi.string().required(),
-      JWT_EXPIRATION_TIME: Joi.string().required(),
-      GOOGLE_AUTH_CLIENT_ID: Joi.string().required(),
-      GOOGLE_AUTH_CLIENT_SECRET: Joi.string().required(),
-    })
-  }), ConfigModule.forRoot({
-    isGlobal: true, // no need to import into other modules
-  }), DatabaseModule, UsersModule, PostsModule, AuthModule, MailModule, GoogleAuthModule, CommentsModule, ChatboxModule, SearchModule,],
+  imports: [
+    ConfigModule.forRoot({
+      validationSchema: Joi.object({
+        POSTGRES_HOST: Joi.string().required(),
+        POSTGRES_PORT: Joi.number().required(),
+        POSTGRES_USER: Joi.string().required(),
+        POSTGRES_PASSWORD: Joi.string().required(),
+        POSTGRES_DB: Joi.string().required(),
+        PORT: Joi.number(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
+        GOOGLE_AUTH_CLIENT_ID: Joi.string().required(),
+        GOOGLE_AUTH_CLIENT_SECRET: Joi.string().required(),
+      }),
+    }),
+    ConfigModule.forRoot({
+      isGlobal: true, // no need to import into other modules
+    }),
+    DatabaseModule,
+    UsersModule,
+    PostsModule,
+    AuthModule,
+    MailModule,
+    GoogleAuthModule,
+    CommentsModule,
+    SearchModule,
+  ],
   controllers: [],
-  providers: []
+  providers: [],
 })
-export class AppModule { }
+export class AppModule {}
