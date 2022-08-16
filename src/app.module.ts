@@ -9,6 +9,8 @@ import { GoogleAuthModule } from './share/google-auth/google-auth.module';
 import { CommentsModule } from './api/comments/comments.module';
 
 import { SearchModule } from './api/search/search.module';
+import { ChatModule } from './api/chat/chat.module';
+import { ChatGateway } from './api/chat/gateway/chat.gateway';
 
 import * as Joi from '@hapi/joi';
 @Module({
@@ -38,8 +40,9 @@ import * as Joi from '@hapi/joi';
     GoogleAuthModule,
     CommentsModule,
     SearchModule,
+    ChatModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [ChatGateway],
 })
 export class AppModule {}
