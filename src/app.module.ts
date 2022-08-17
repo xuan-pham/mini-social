@@ -9,6 +9,7 @@ import { GoogleAuthModule } from './share/google-auth/google-auth.module';
 import { CommentsModule } from './api/comments/comments.module';
 
 import { SearchModule } from './api/search/search.module';
+import { MessageModule } from './api/message/message.module';
 
 import * as Joi from '@hapi/joi';
 @Module({
@@ -38,6 +39,7 @@ import * as Joi from '@hapi/joi';
     GoogleAuthModule,
     CommentsModule,
     SearchModule,
+    MessageModule,
   ],
   controllers: [],
   providers: [],
