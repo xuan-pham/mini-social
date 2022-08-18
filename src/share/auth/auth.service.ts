@@ -1,15 +1,10 @@
-import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
-import { UsersService } from 'src/api/users/users.service';
-import { RegisterDto } from './dto/register.dto';
-import { RequestWithUser } from './interface/requestWithUser.interface';
-import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import * as bcrypt from "bcrypt";
+import { UsersService } from "src/api/users/users.service";
+import { RegisterDto } from "./dto/register.dto";
+import { RequestWithUser } from "./interface/requestWithUser.interface";
+import { JwtService } from "@nestjs/jwt";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class AuthService {
@@ -109,7 +104,6 @@ export class AuthService {
       throw new BadRequestException('Bad confirmation token');
     }
   }
-
   async confirmEmail(email) {
     const user = await this.userService.getUserByEmail(email);
     if (user.isStatus) {

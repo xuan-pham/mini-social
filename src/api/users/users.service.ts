@@ -1,8 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './shemas/user.entity';
-import { CreaterUserDto } from './dto';
+import { CreaterUserDto } from './dto/index';
+import { run } from 'googleapis/build/src/apis/run';
 
 @Injectable()
 export class UsersService {
@@ -13,7 +19,9 @@ export class UsersService {
 
   async getUserById(id: number) {
     try {
-      return await this.userRepository.findOne({ where: { id } });
+      const user = await this.userRepository.findOne({ where: { id } });
+      // if (!user) throw new HttpException('User not exist', HttpStatus.NOT_FOUND);
+      return user;
     } catch (error) {
       return error.message;
     }
@@ -92,7 +100,6 @@ export class UsersService {
       return error.message;
     }
   }
-
   async queryBuilder(alias: string) {
     return this.userRepository.createQueryBuilder(alias);
   }
